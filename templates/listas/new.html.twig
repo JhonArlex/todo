@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nueva lista{% endblock %}
+
+{% block body %}
+    <div class="back-title">
+        <a class="waves-effect blue lighten-4 btn-flat btn-back" href="{{ path('listas_index') }}"><i class="material-icons">keyboard_arrow_left</i></a>
+        <h4>Crear lista</h4>
+    </div>
+    {{ include('listas/_form.html.twig') }}
+
+    
+{% endblock %}

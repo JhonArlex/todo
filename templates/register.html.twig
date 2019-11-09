@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ parent() }}
+
+
+    {% if app.request.query.get("error") == 1 %}
+        <div class="row">
+            <div class="col s12">
+                <div class="card red">
+                    <div class="card-content">
+                        {% if app.request.query.get("type") == 1 %}
+                            <p>Las contraseñas no coincidieron</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if errors | length > 0 %}
+        <ul>
+        {% for error in errors %}
+            <li>{{ error.message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    
+    
+
+    <div class="col s12 m7">
+        <div class="card">
+            <div class="card-content">
+                <h2>TO-DO El País</h2>
+                <p>Registro</p>
+                <div class="row">
+                    <form class="col s12" action="/register/create" method="post">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="Nombre" type="text" name="nombre" class="validate">
+                                <label for="Nombre">Nombre</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="email" type="email" name="correo" class="validate">
+                                <label for="email">Correo electrónico</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="password" type="password" name="contrasena" class="validate">
+                                <label for="password">Contraseña</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="repassword" type="password" name="recontrasena" class="validate">
+                                <label for="repassword">Repetir contraseña</label>
+                            </div>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">Registrarme
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-action">
+                <a href="/login">Iniciar Sesión</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/register.js') }}"></script>
+{% endblock %}

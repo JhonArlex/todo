@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tareas index
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ asset('css/tareas.css') }}" rel="stylesheet"/>
+	<link href="{{ asset('css/utilities.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+	{{ parent() }}
+
+	<div class="row">
+		<div class="col s1">
+			<div class="row m-16">
+				<a href="#" data-target="slide-out" class="sidenav-trigger">
+					<i class="material-icons">menu</i>
+				</a>
+			</div>
+		</div>
+		<div class="col s10">
+			<div class="row">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">textsms</i>
+					<input type="text" id="autocomplete-input" class="autocomplete">
+					<label for="autocomplete-input">Buscar tareas</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<ul id="slide-out" class="sidenav">
+		<li>
+			<a class="subheader">Listas</a>
+		</li>
+
+		{% for lista in listas %}
+			<li>
+				<a class="waves-effect" href="{{ path('tareas_index') }}?id={{lista.id}}">{{ lista.nombre }}</a>
+			</li>
+		{% else %}
+			<p>Usuario sin lista</p>
+		{% endfor %}
+
+		<li>
+			<a class="waves-effect waves-light btn" href="{{ path('listas_new') }}">Crear lista nueva</a>
+		</li>
+	</ul>
+
+	<div class="top">
+		<h3>Tareas</h3>
+		<a class="btn-large waves-effect waves-light red" href="{{ path('tareas_new') }}">Nueva tarea</a>
+	</div>
+    
+	<ul class="collapsible">
+		{% for tarea in tareas %}
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">filter_drama</i>{{ tarea.nombre }}</div>
+				<div class="collapsible-body">
+					<p>{{ tarea.nota }}</p>
+                    <div>
+                        <a class="waves-effect waves-light btn" href="{{ path('tareas_edit', {'id': tarea.id}) }}">Editar</a>
+                        <a class="waves-effect waves-light btn" href="{{ path('tareas_show', {'id': tarea.id}) }}">Ver detalles</a>
+                    </div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+	{% block javascripts %}
+		{{ parent() }}
+		<script src="{{ asset('js/tareas.js') }}"></script>
+		<script src="{{ asset('js/autocomplete.js') }}"></script>
+	{% endblock %}
+{% endblock %}

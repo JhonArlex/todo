@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+     {% if app.request.query.get("register") == 1 %}
+        <div class="row">
+            <div class="col s12">
+                <div class="card green">
+                    <div class="card-content">
+                        <p>Usuario creado con exito</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="col s12 m7">
+        <div class="card horizontal">
+            <div class="card-image img-logo hide-on-small-only">
+                <img src="{{ asset('img/pais.jpg') }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h2>TO-DO El País</h2>
+                    <p>Por favor inicia sesion para poder ingresar a la plataforma</p>
+                    <div class="row">
+                        <form class="col s12" action="login/init" method="post">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="email" type="email" name="correo" class="validate">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="password" type="password" name="contrasena" class="validate">
+                                    <label for="password">Password</label>
+                                </div>
+                            </div>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Iniciar Sesión
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="/register">Registrarme</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

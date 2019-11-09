@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tareas{% endblock %}
+
+{% block body %}
+    <div class="back-title">
+        <a class="waves-effect blue lighten-4 btn-flat btn-back" href="{{ path('tareas_index') }}"><i class="material-icons">keyboard_arrow_left</i></a>
+        <h4>Editar tarea</h4>
+    </div>
+
+    {{ include('tareas/_form.html.twig', {'button_label': 'Actualizar'}) }}
+{% endblock %}

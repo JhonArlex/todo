@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listas
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('css/utilities.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="top">
+        <h3>Listas</h3>
+        <a class="btn-large waves-effect waves-light red" href="{{ path('listas_new') }}">Nueva lista</a>
+    </div>
+	
+    
+	<div class="row">
+		{% for lista in listas %}
+			<div class="col s12 m4">
+				<div class="card blue lighten-4">
+					<div class="card-content">
+						<span class="card-title">{{ lista.nombre }}</span>
+					</div>
+                    <div class="card-action">
+                        <a href="{{ path('tareas_index') }}?id={{lista.id}}">Ver tareas</a>
+                    </div>
+				</div>
+			</div>
+
+		{% else %}
+			<p>No hay listas disponibles</p>
+		{% endfor %}
+	</div>
+{% endblock %}

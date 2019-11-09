@@ -1,0 +1,23 @@
+.back-title {
+    display: flex;
+    align-items: center;
+}
+
+.btn-back{
+    margin:16px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom{
+    display: flex;
+    margin-top: 16px;
+}
+
+.btn-editar{
+    margin-right: 16px;
+}
